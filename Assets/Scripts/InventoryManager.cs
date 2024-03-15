@@ -25,7 +25,7 @@ public class InventoryManager : MonoBehaviour
             weaponsSprites[i].sprite = item.itemSprite;
 
             weaponSlots[i].slotItem = item;
-            weaponSlots[i].Slotnumber = i;
+            weaponSlots[i].slotNumber = i;
 
             return; 
         }

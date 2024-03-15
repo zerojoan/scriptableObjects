@@ -20,14 +20,33 @@ public class InventorySlot : MonoBehaviour
 
     public void InspectItem()
     {
-        if(slotItem =! null)
+        if(slotItem != null)
         {
             inspectionImage.sprite = slotItem.itemSprite;
             inspectionName.text = slotItem.itemName;
-            inspectionPriece.text = slotItem.itemPrice.ToString();
+            inspectionPrice.text = slotItem.itemprice.ToString();
             inspectionDescription.text = slotItem.itemDescription;
 
             inspectionWindow.SetActive(true);
         }
+
+        deleteButton.onClick.AddListener(RemoveItem);
     }
+
+    public void RemoveItem()
+    {
+        if(InventoryManager.instance.weapons[slotNumber] != null)
+        {
+            InventoryManager.instance.weapons [slotNumber] = null;
+            InventoryManager.instance.weaponsName[slotNumber].text = "Empty";
+            InventoryManager.instance.weaponsSprites[slotNumber].sprite = null;
+        }
+
+        slotItem = null; 
+        
+        deleteButton.onClick.RemoveListener(RemoveItem);
+        inspectionWindow.SetActive(false);
+    }
+    
+   
 }
